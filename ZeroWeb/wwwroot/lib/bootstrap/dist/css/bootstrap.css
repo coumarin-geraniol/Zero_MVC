@@ -113,6 +113,10 @@ body {
     }
 
 
+.right-gap {
+    margin-right: 1rem;
+}
+
 hr {
     margin: 1rem 0;
     color: inherit;

@@ -10,9 +10,10 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 </head>
-<body>
+<body class="bg-image" style="background-image: url('https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg?w=1060&t=st=1685571847~exp=1685572447~hmac=77f50f47d8cf06246c18eef53d094a9c2aa212630186024d327dcc55761e0976');
+            height: 100vh">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom box-shadow mb-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-dark box-shadow mb-5">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ZeroWeb</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,7 +35,6 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Managment</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>                                
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
                             </div>
                         </li>
@@ -50,7 +50,9 @@
         </main>
     </div>
 
-    <nav class="navbar navbar-dark bg-dark border-top box-shadow text-muted fixed-bottom">
+    <div class="text-light">semahattt</div>
+
+    <nav class="navbar navbar-dark bg-dark border-top border-dark box-shadow text-muted fixed-bottom">
         <div class="container-fluid justify-content-center">
             Made with <i class="bi bi-heart-fill text-danger opacity-50"></i> by ZeroWeb
         </div>
@@ -58,8 +60,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="https://cdn.tiny.cloud/1/9cq449eaz0clkscu11kj6zo2cm3d6o8ibawd6v5fnscph08i/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html> 
