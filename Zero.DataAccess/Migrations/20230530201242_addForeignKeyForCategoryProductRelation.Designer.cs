@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zero.DataAccess.Data;
 
@@ -10,9 +11,11 @@ using Zero.DataAccess.Data;
 namespace Zero.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230530201242_addForeignKeyForCategoryProductRelation")]
+    partial class addForeignKeyForCategoryProductRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,10 +90,6 @@ namespace Zero.DataAccess.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ListPrice")
                         .HasColumnType("int");
 
@@ -119,7 +118,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SWD9999001",
-                            ImageUrl = "",
                             ListPrice = 99,
                             Price = 90,
                             Price50 = 85,
@@ -132,7 +130,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 1,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "CAW777777701",
-                            ImageUrl = "",
                             ListPrice = 40,
                             Price = 30,
                             Price50 = 25,
@@ -145,7 +142,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "RITO5555501",
-                            ImageUrl = "",
                             ListPrice = 55,
                             Price = 50,
                             Price50 = 40,
@@ -158,7 +154,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 2,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "WS3333333301",
-                            ImageUrl = "",
                             ListPrice = 70,
                             Price = 65,
                             Price50 = 60,
@@ -171,7 +166,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "SOTJ1111111101",
-                            ImageUrl = "",
                             ListPrice = 30,
                             Price = 27,
                             Price50 = 25,
@@ -184,7 +178,6 @@ namespace Zero.DataAccess.Migrations
                             CategoryId = 3,
                             Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ISBN = "FOT000000001",
-                            ImageUrl = "",
                             ListPrice = 25,
                             Price = 23,
                             Price50 = 22,

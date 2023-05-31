@@ -1,10 +1,10 @@
-﻿@model Category
+﻿@model Product
 
 <div class="card shadow border-0 mt-4">
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white">Delete Category</h2>
+                <h2 class="text-white">Delete Product</h2>
             </div>
         </div>
     </div>
@@ -16,14 +16,14 @@
                 @*<div asp-validation-summary="ModelOnly"></div>*@
 
                 <div class="mb-3 row p-1">
-                    <label asp-for="Name" class="p-0 mb-2"></label>
-                    <input asp-for="Name" disabled class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <label asp-for="Title" class="p-0 mb-2"></label>
+                    <input asp-for="Title" disabled class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
                 <div class="mb-3 row p-1">
-                    <label asp-for="DisplayOrder" class="p-0 mb-2"></label>
-                    <input asp-for="DisplayOrder" disabled class="form-control" />
-                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                    <label asp-for="Author" class="p-0 mb-2"></label>
+                    <input asp-for="Author" disabled class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
                 </div>
 
                 <div class="row">
@@ -31,7 +31,7 @@
                         <button type="submit" class="btn btn-dark form-control">Delete</button>
                     </div>
                     <div class="col-6 col-md-3">
-                        <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-outline-dark border form-control">
+                        <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="btn btn-outline-dark border form-control">
                             Back to List
                         </a>
                     </div>
