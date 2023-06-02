@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Zero.Models.ViewModels;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Zero.Utility;
 
 namespace ZeroWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

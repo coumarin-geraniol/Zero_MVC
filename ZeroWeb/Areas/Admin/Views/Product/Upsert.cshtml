@@ -32,7 +32,7 @@
                         <div class="mb-3 row p-1">
                             <label asp-for="Product.CategoryId" class="p-0 mb-2"></label>
                             <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
-                                <option disabled selected>--Select Category</option>
+                                <option disabled selected>--Select Category--</option>
                             </select>
                             <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                         </div>

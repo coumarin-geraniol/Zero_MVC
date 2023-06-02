@@ -16,17 +16,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0-preview.4.23261.6" />
+    <PackageReference Include="Stripe.net" Version="41.20.0-beta.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Zero.DataAccess\Zero.DataAccess.csproj" />
     <ProjectReference Include="..\Zero.Models\Zero.Models.csproj" />
     <ProjectReference Include="..\Zero.Utility\Zero.Utility.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,111 @@
+﻿@model ShoppingCartVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white">Shopping Summary</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 px-3">
+
+        <div class="row">
+            <div class="col-6 text-center p-0">
+                <h3>Shipping Details</h3>
+            </div>
+            <div class="col-6 text-center p-0">
+                <h3>Order Summary</h3>
+            </div>
+        </div>
+
+
+        <form method="post">
+
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.Name" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.Name" tabindex="5" class="form-control" aria-required="true" placeholder="ankara" />
+                            <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.PhoneNumber" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.PhoneNumber" tabindex="5" class="form-control" aria-required="true" placeholder="ankara" />
+                            <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.State" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.State" tabindex="5" class="form-control" aria-required="true" placeholder="ankara" />
+                            <span asp-validation-for="OrderHeader.State" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.StreetAddress" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.StreetAddress" tabindex="5" class="form-control" aria-required="true" placeholder="ankara" />
+                            <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="row">
+                            <label class="p-0 mb-2 text-center">Fish</label>
+                        </div>
+
+                        <ul class="list-group">
+
+                            @foreach (var product in Model.ShoppingCartList)
+                            {
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                            <strong class="my-0 mr-2 fs-5 text-dark">@product.Product.Title </strong>
+                                            <div>
+                                                <small class="text-white">.</small>
+                                                <small class="text-muted"> by @product.Product.Author</small>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">Quantity: @product.Count</small>
+                                    </div>
+                                    <span class="text-success">@((product.Price * product.Count).ToString("c")) </span>
+                                </li>
+
+                            }
+
+
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <small class="text-success">Total :</small>
+                                <strong class="text-success">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="card-footer mt-3">
+                    <div class="row">
+                        <div class="col-12 col-md-8 pt-2">
+                            <p style="color:maroon; font-size:14px;">
+                                Estimate Arrival Date:
+                                @DateTime.Now.AddDays(7).ToShortDateString() - @DateTime.Now.AddDays(14).ToShortDateString()
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <button type="submit" value="Place Order" class="btn btn-dark btn-gradient form-control">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

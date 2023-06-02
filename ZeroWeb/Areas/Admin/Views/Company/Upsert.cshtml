@@ -1,0 +1,76 @@
+﻿@model Company
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white"> @(Model.Id != 0 ? "Update" : "Create") Company</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Id" hidden />
+            <div class="p-3">
+
+                @*<div asp-validation-summary="ModelOnly"></div>*@
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Name" class="p-0 mb-2"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="PhoneNumber" class="p-0 mb-2"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="State" class="p-0 mb-2"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="StreetAddress" class="p-0 mb-2"></label>
+                    <input asp-for="StreetAddress" class="form-control" />
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-dark form-control"> @(Model.Id != 0 ? "Update" : "Create")</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-area="Admin" asp-controller="Company" asp-action="Index" class="btn btn-outline-dark border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'autolink charmap codesample emoticons lists table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker permanentpen powerpaste advtable advcode tableofcontents footnotes mergetags inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | checklist numlist bullist indent outdent | emoticons charmap ',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
