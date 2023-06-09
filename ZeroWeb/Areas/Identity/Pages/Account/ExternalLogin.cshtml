@@ -4,27 +4,69 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2 id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
-<hr />
 
-<p id="external-login-description" class="text-info">
-    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
-</p>
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="email" placeholder="Please enter your email."/>
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white">@ViewData["Title"]</h2>
+                <h2 class="text-white" id="external-login-title">Associate your @Model.ProviderDisplayName account.</h2>
+                <p class="text-info" id="external-login-description">
+                    You've successfully authenticated with <strong>@Model.ProviderDisplayName</strong>.
+                    Please enter an email address for this site below and click the Register button to finish
+                    logging in.
+                </p>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
+        </div>
+    </div>
+    <div class="card-body p-4 px-3">
+
+        <div class="col-12 text-center p-0">
+            <h3>Create a new account</h3>
+        </div>
+
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Input.Email" class="p-0 mb-2"></label>
+                            <input asp-for="Input.Email" tabindex="1" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Input.State" class="p-0 mb-2"></label>
+                            <input asp-for="Input.State" tabindex="5" class="form-control" autocomplete="username" aria-required="true" placeholder="ankara" />
+                            <span asp-validation-for="Input.State" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Input.PhoneNumber" class="p-0 mb-2"></label>
+                            <input asp-for="Input.PhoneNumber" tabindex="7" class="form-control" autocomplete="username" aria-required="true" placeholder="+90 000 00 00" />
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Input.Name" class="p-0 mb-2"></label>
+                            <input asp-for="Input.Name" tabindex="2" class="form-control" autocomplete="username" aria-required="true" placeholder="example" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="Input.StreetAddress" class="p-0 mb-2"></label>
+                            <input asp-for="Input.StreetAddress" tabindex="6" class="form-control" autocomplete="username" aria-required="true" placeholder="cebeci sk. no24" />
+                            <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <button type="submit" class="btn btn-dark bg-gradient form-control">Register</button>
+                    </div>
+                </div>
+            </div>
+        </form>        
     </div>
 </div>
 

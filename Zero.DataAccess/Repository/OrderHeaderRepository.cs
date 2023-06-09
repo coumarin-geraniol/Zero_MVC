@@ -45,7 +45,7 @@ namespace Zero.DataAccess.Repository
             }
             if (!string.IsNullOrEmpty(paymentIntendId))
             {
-                orderFromDb.PaymentStatus = paymentIntendId;
+                orderFromDb.PaymentIntentId = paymentIntendId;
                 orderFromDb.PaymentDate = DateTime.Now;
             }
         }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using Zero.DataAccess.Repository.IRepository;
 using Zero.Models;
+using Zero.Utility;
 
 namespace ZeroWeb.Areas.Customer.Controllers
 {
@@ -22,6 +24,16 @@ namespace ZeroWeb.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (claim != null)
+            {
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+            }
+
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(productList);
         }
@@ -49,15 +61,21 @@ namespace ZeroWeb.Areas.Customer.Controllers
 
             if (cartFromDb != null)
             {
+                // shopping cart exists
                 cartFromDb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
             }
             else
             {
+                // add to cart
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save(); 
+
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
 
-            _unitOfWork.Save();
             TempData["success"] = "Cart updated successfully";
 
 

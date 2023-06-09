@@ -1,0 +1,226 @@
+﻿@model OrderVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white">Order Summary</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 px-3">
+
+        <div class="row">
+            <div class="col-12 col-lg-5 text-center">
+                <h3>PickUp Details</h3>
+            </div>
+            <div class="col-12 col-lg-5 offset-lg-1 text-center">
+                <h3>Order Details</h3>
+            </div>
+        </div>
+        <form method="post">
+            <input asp-for="OrderHeader.Id" hidden />
+
+            <div class="p-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                <div class="row">
+                    <div class="col-12 col-lg-5">
+
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.Name" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.Name" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                            <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.PhoneNumber" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.PhoneNumber" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                            <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.State" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.State" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                            <span asp-validation-for="OrderHeader.State" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label asp-for="OrderHeader.StreetAddress" class="p-0 mb-2"></label>
+                            <input asp-for="OrderHeader.StreetAddress" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                            <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
+                        </div>
+
+                        @if (User.IsInRole(SD.Role_Admin) || (User.IsInRole(SD.Role_Employee))) {
+                            <div class="mb-3 row p-1">
+                                <label asp-for="OrderHeader.Carrier" class="p-0 mb-2"></label>
+                                <input asp-for="OrderHeader.Carrier" id="carrier" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                                <span asp-validation-for="OrderHeader.Carrier" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3 row p-1">
+                                <label asp-for="OrderHeader.TrackingNumber" class="p-0 mb-2"></label>
+                                <input asp-for="OrderHeader.TrackingNumber" id="trackingNumber" tabindex="5" class="form-control" aria-required="true" placeholder="--" />
+                                <span asp-validation-for="OrderHeader.TrackingNumber" class="text-danger"></span>
+                            </div>
+
+                        }
+                        else {
+                            <div class="mb-3 row p-1">
+                                <label class="p-0 ">Carrier: @Model.OrderHeader.Carrier</label>
+                            </div>
+                            <div class="mb-3 row p-1">
+                                <label class="p-0 ">Tracking Number: @Model.OrderHeader.TrackingNumber</label>
+                            </div>
+                        }
+
+                       
+
+
+                        <div class="mb-3 row p-1">
+                            <label class="p-0 ">Email: @Model.OrderHeader.ApplicationUser.Email</label>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label class="p-0">Order Date: @Model.OrderHeader.OrderDate.ToShortDateString()</label>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label class="p-0">Shipping Date: @Model.OrderHeader.ShippingDate.ToShortDateString()</label>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label class="p-0">Session: @Model.OrderHeader.SessionId</label>
+                        </div>
+                        <div class="mb-3 row p-1">
+                            <label class="p-0 ">Payment Intent Id: @Model.OrderHeader.PaymentIntentId</label>
+                        </div>
+                        @if (Model.OrderHeader.SessionId == null)
+                        {
+                            <div class="mb-3 row p-1">
+                                <label class="p-0">Payment Due Date: @Model.OrderHeader.PaymentDueDate.ToShortDateString()</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="mb-3 row p-1">
+                                <label class="p-0">Payment Date: @Model.OrderHeader.PaymentDate.ToShortDateString()</label>
+                            </div>
+                        }
+
+
+                        <div class="mb-3 row p-1">
+                            <label class="p-0">Payment Status: @Model.OrderHeader.PaymentStatus</label>
+                        </div>
+
+                        <div class="mb-3 row p-1">
+                            <button type="submit" asp-action="UpdateOrderDetail" value="Place Order" class="btn btn-success btn-gradient form-control">Update Order Details</button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-12 col-lg-5 offset-lg-1">
+
+                        <div class="row">
+                            <label class="p-0 mb-3 fw-semibold btn btn-outline-dark form-control my-2">Order Status - @Model.OrderHeader.OrderStatus</label>
+                        </div>
+
+                        <ul class="list-group mb-3">
+
+                            @foreach (var order in Model.OrderDetail)
+                            {
+                                <li class="list-group-item d-flex justify-content-between p-2">
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                            <strong class="my-0 mr-2 fs-5 text-dark">@order.Product.Title </strong>
+                                            <div>
+                                                <small class="text-white">.</small>
+                                                <small class="text-muted"> by @order.Product.Author</small>
+                                            </div>
+                                        </div>
+                                        <small class="text-muted">Quantity: @order.Count</small>
+                                    </div>
+                                    <span class="text-success">@((order.Price * order.Count).ToString("c")) </span>
+                                </li>
+
+                            }
+
+
+                            <li class="list-group-item bg-dark">
+                                <div class="row container">
+                                    <div class="col-6">
+                                        <h5 class="text-white">TOTAL: </h5>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h5 class="text-white">@Model.OrderHeader.OrderTotal.ToString("c")</h5>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+
+
+
+
+                        @if (Model.OrderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment &&
+                        Model.OrderHeader.OrderStatus == SD.StatusShipped)
+                        {
+                            <button type="submit" class="btn btn-success form-control my-1 fw-semibold fs-5">Pay Now</button>
+                        }
+                        @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
+                        {
+                            @if (Model.OrderHeader.OrderStatus == SD.StatusApproved)
+                            { 
+                                <button type="submit" asp-action="StartProcessing" class="btn btn-dark form-control my-1 fw-semibold fs-5">
+                                    Start Processing
+                                </button>
+                            }
+                            @if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
+                            {
+                                <button type="submit" asp-action="ShipOrder" onclick="return validateInput()" class="btn btn-dark form-control my-1 fw-semibold fs-5">
+                                    Ship Order
+                                </button>
+                            }
+
+                            @if (Model.OrderHeader.OrderStatus != SD.StatusRefunded &&
+                           Model.OrderHeader.OrderStatus != SD.StatusCancelled &&
+                           Model.OrderHeader.OrderStatus != SD.StatusShipped)
+                            {
+                                <button asp-action="CancelOrder" type="submit" class="btn btn-danger form-control my-1 fw-semibold fs-5">Cancel Order</button>
+                            }
+                        }
+
+
+
+                         
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function validateInput() {
+            if (document.getElementById("trackingNumber").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter tracking number!',
+                });
+                return false;
+            }
+            if (document.getElementById("carrier").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter carrier!',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
